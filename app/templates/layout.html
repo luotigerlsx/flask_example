@@ -1,0 +1,45 @@
+<!doctype html>
+<title>Crawled Events Management System</title>
+<link rel=stylesheet type=text/css href="https://cdn.datatables.net/r/ju-1.11.4/jqc-1.11.3,dt-1.10.8/datatables.min.css">
+<link rel=stylesheet type=text/css href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+
+<style>
+ul#menu {
+    padding: 0;
+}
+
+ul#menu li {
+    display: inline;
+}
+
+ul#menu li a {
+    background-color: black;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 4px 4px 0 0;
+}
+
+ul#menu li a:hover {
+    background-color: orange;
+}
+</style>
+<div class=page>
+  <h1>Crawled Events Management System</h1>
+  <div class=metanav>
+  {% if session.logged_in %}
+	<ul id="menu">
+	  <li><a href="{{ url_for('show_upcoming') }}">Crawled Upcoming</a></li>
+	  <li><a href="{{ url_for('show_blacklist') }}">CU Black List</a></li>
+	  <li><a href="{{ url_for('show_crawled_events') }}">Crawled Events</a></li>
+	  <li><a href="{{ url_for('show_download_logs') }}">Logs</a></li>
+	  <li><a href="{{ url_for('logout') }}">Logout</a></li>
+	</ul> 
+    
+  {% endif %}
+  </div>
+  {% for message in get_flashed_messages() %}
+    <div class=flash>{{ message }}</div>
+  {% endfor %}
+  {% block body %}{% endblock %}
+</div>
